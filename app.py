@@ -17,4 +17,10 @@ db.create_all()
 def show_all_cupcakes():
     cupcakes = Cupcake.query.all()
     json_ready_cupcakes = [cupcake.serialize() for cupcake in cupcakes]
-    return jsonify(json_ready_cupcakes)
+    return jsonify(cupcakes=json_ready_cupcakes)
+
+@app.route('/api/cupcakes/<int:cupcake_id>')
+def show_single_cupcake(cupcake_id):
+    cupcake = Cupcake.query.get_or_404(cupcake_id)
+    json_ready_cupcake = cupcake.serialize()
+    return jsonify(cupcake=json_ready_cupcake)
