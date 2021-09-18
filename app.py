@@ -12,3 +12,9 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
 db.create_all()
+
+@app.route('/api/cupcakes')
+def show_all_cupcakes():
+    cupcakes = Cupcake.query.all()
+    json_ready_cupcakes = [cupcake.serialize() for cupcake in cupcakes]
+    return jsonify(json_ready_cupcakes)
