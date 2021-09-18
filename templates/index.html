@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Cupcakes App!{% endblock %}
+
+{% block content %}
+<h1>Cupcakes!</h1>
+<h2>Existing Cupcakes:</h2>
+<ul id="all-cupcakes"></ul>
+<h2>Add a Cupcake:</h2>
+<form method="POST" action="/api/cupcakes" id="add-cupcake-form">
+    <div>
+        <label for="flavor">Flavor:</label>
+        <input type="text" name="flavor" id="flavor" required>
+    </div>
+    <div>
+        <label for="size">Size:</label>
+        <input type="text" name="size" id="size" required>
+    </div>
+    <div>
+        <label for="rating">Rating:</label>
+        <input type="text" name="rating" id="rating" required>
+    </div>
+    <div>
+        <label for="image">Image:</label>
+        <input type="text" name="image" id="image">
+    </div>
+    <button>Add Cupcake</button>
+</form>
+{% endblock %}
