@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, flash, jsonify, url
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from models import db, connect_db, Cupcake
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'catdog'
@@ -24,3 +25,12 @@ def show_single_cupcake(cupcake_id):
     cupcake = Cupcake.query.get_or_404(cupcake_id)
     json_ready_cupcake = cupcake.serialize()
     return jsonify(cupcake=json_ready_cupcake)
+
+@app.route('/api/cupcakes', methods=["POST"])
+def create_cupcake():
+    json = request.json
+    new_cupcake = Cupcake(flavor=json["flavor"], size=json["size"], 
+    rating=json["rating"], image=json.get("image"))
+    db.session.add(new_cupcake)
+    db.session.commit()
+    return (jsonify(cupcake=new_cupcake.serialize()), 201)
