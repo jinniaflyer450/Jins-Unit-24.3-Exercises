@@ -5,7 +5,7 @@ from models import db, connect_db, Cupcake
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'catdog'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Ob1wankenobi@localhost/blogly'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Ob1wankenobi@localhost/cupcakes'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
